@@ -1,15 +1,15 @@
 <?php
-    $user_name = $_POST['user_name'];
+    $user = $_POST['user'];
     $email = $_POST['email'];
     $phone_number = $_POST['phone_number'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    $dbh = new pdo ('mysql:host=localhost;dbname=form', "root", "");
+    $dbh = new pdo ('mysql:host=localhost; dbname=forma', "root", "");
 
     if($password == $confirm_password){
         $password= md5($password);
-        $dbh->query("INSERT INTO users (user_name,email,phone_number,password) VALUE ('$user_name','$email', '$phone_number', '$password')");
+        $dbh->query("INSERT INTO users (user,email,phone_number,password) VALUE ('$user','$email', '$phone_number', '$password')");
     }else{
         echo 'Пароли не совпадают';
     }
@@ -26,7 +26,7 @@
 </head>
 <body>
     <form action="index.php" method="post">
-        <input type="text" name="user_name" placeholder="Имя" required>
+        <input type="text" name="user" placeholder="Имя" required>
         <input type="email" name="email" placeholder="Почта" required>
         <input type="tel" name="phone_number" placeholder="Телефон" required>
         <input type="password" name="password" placeholder="Пароль" required>
